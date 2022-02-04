@@ -1,0 +1,13 @@
+{
+  "require": {
+    "phpmailer/phpmailer": "~5.2",
+    "twig/twig": "~1.0",
+    "vlucas/phpdotenv": "^5.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "core\\": "core/",
+      "app\\": "app/"
+    }
+  }
+}

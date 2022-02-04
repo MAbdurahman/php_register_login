@@ -1,0 +1,28 @@
+[03-Feb-2022 01:30:37 America/Chicago] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\Apache24\www\php_mvc_framework\public\index.php(50): core\Router->dispatch('products')
+#1 {main}
+Thrown in 'C:\Apache24\www\php_mvc_framework\core\Router.php' on line 136
+[03-Feb-2022 01:30:38 America/Chicago] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\Apache24\www\php_mvc_framework\public\index.php(50): core\Router->dispatch('favicon.ico')
+#1 {main}
+Thrown in 'C:\Apache24\www\php_mvc_framework\core\Router.php' on line 136
+[03-Feb-2022 01:30:46 America/Chicago] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\Apache24\www\php_mvc_framework\public\index.php(50): core\Router->dispatch('favicon.ico')
+#1 {main}
+Thrown in 'C:\Apache24\www\php_mvc_framework\core\Router.php' on line 136
+[03-Feb-2022 01:47:01 America/Chicago] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\Apache24\www\php_mvc_framework\public\index.php(50): core\Router->dispatch('font/fontawesom...')
+#1 {main}
+Thrown in 'C:\Apache24\www\php_mvc_framework\core\Router.php' on line 136
+[03-Feb-2022 01:47:47 America/Chicago] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\Apache24\www\php_mvc_framework\public\index.php(50): core\Router->dispatch('favicon.ico')
+#1 {main}
+Thrown in 'C:\Apache24\www\php_mvc_framework\core\Router.php' on line 136
+[03-Feb-2022 01:56:34 America/Chicago] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\Apache24\www\php_mvc_framework\public\index.php(50): core\Router->dispatch('products')
+#1 {main}
+Thrown in 'C:\Apache24\www\php_mvc_framework\core\Router.php' on line 136
+[03-Feb-2022 01:57:14 America/Chicago] Uncaught exception: 'Exception' with message 'Controller class app\controllers\Products not found'
+Stack trace: #0 C:\Apache24\www\php_mvc_framework\public\index.php(50): core\Router->dispatch('products/nee')
+#1 {main}
+Thrown in 'C:\Apache24\www\php_mvc_framework\core\Router.php' on line 132
