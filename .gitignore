@@ -84,3 +84,5 @@ gen
 vendor/*
 !vendor/composer
 !vendor/autoload.php
+
+logs/*
