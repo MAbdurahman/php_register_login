@@ -81,4 +81,6 @@ fabric.properties
 out
 gen
 .env
-vendor
+vendor/*
+!vendor/composer
+!vendor/autoload.php
