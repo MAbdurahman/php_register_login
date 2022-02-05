@@ -81,7 +81,7 @@
                 }
             }
 
-            return false;;
+            return false;
 
         }//end of the match function
 
