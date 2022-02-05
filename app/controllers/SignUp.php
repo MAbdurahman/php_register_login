@@ -2,6 +2,7 @@
 
     namespace app\controllers;
 
+    use app\models\User;
     use \core\View;
 
     /**
@@ -20,4 +21,20 @@
             View::renderTemplate('signup/new.html');
 
         }//end of the newAction Function
+
+        /**
+         * createAction - Signs up a new user
+         *
+         * @return void
+         */
+        public function createAction()
+        {
+            $user = new User($_POST);
+
+            $user->save();
+
+            View::renderTemplate('signup/success.html');
+
+        }// end of the createAction Function
+
     }//end of the SignUp Class
