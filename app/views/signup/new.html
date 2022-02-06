@@ -6,7 +6,7 @@
 
 <script>
     $.validator.addMethod('validPassword',
-            function(value, element, param) {
+            function (value, element, param) {
                 if (value != '') {
                     if (value.match(/.*[a-z]+.*/i) == null) {
                         return false;
@@ -18,16 +18,17 @@
 
                 return true;
             },
-            'Must contain at least one letter and one number'
+            'Password must contain at least one letter and one number'
     );
-    $(function() {
+    $(function () {
 
         $('#form-signup').validate({
             rules: {
                 name: 'required',
                 email: {
                     required: true,
-                    email: true
+                    email: true,
+                    remote: '/account/validate-email'
                 },
                 password: {
                     required: true,
@@ -36,6 +37,11 @@
                 },
                 password_confirmation: {
                     equalTo: '#inputPassword'
+                }
+            },
+            messages: {
+                email: {
+                    remote: 'Email already exists!'
                 }
             }
         });
@@ -61,21 +67,21 @@
 
     <div>
         <label for="inputName">Name</label>
-        <input id="inputName" type="text" name="name" placeholder="Name" autofocus value="{{ user.name }}" required />
+        <input id="inputName" type="text" name="name" placeholder="Name" autofocus value="{{ user.name }}" required/>
     </div>
     <div>
         <label for="inputEmail">Email</label>
         <input id="inputEmail" type="email" name="email" placeholder="email address" value="{{ user.email }}"
-               required />
+               required/>
     </div>
     <div>
         <label for="inputPassword">Password</label>
-        <input type="password" id="inputPassword" name="password" placeholder="Password" required />
+        <input type="password" id="inputPassword" name="password" placeholder="Password" required/>
     </div>
     <div>
         <label for="inputPasswordConfirmation">Repeat password</label>
         <input type="password" id="inputPasswordConfirmation" name="password_confirmation"
-               placeholder="Repeat password" required />
+               placeholder="Repeat password" required/>
     </div>
 
     <button type="submit">Sign up</button>

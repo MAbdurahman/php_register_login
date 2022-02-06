@@ -75,7 +75,7 @@
             if (filter_var($this->email, FILTER_VALIDATE_EMAIL) === false) {
                 $this->errors[] = 'Valid email is required!';
             }
-            if ($this->emailExists($this->email)) {
+            if (static::emailExists($this->email)) {
                 $this->errors[] = 'Email already exists!';
             }
 
@@ -103,7 +103,7 @@
          * @param string $email email address to search for
          * @return boolean  True if a record already exists with the specified email, false otherwise
          */
-        protected function emailExists($email)
+        public static function emailExists($email)
         {
             $sql = 'SELECT * FROM users WHERE email = :email';
 
