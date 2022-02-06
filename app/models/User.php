@@ -68,31 +68,53 @@
         {
             // Name
             if ($this->name == '') {
-                $this->errors[] = 'Name is required';
+                $this->errors[] = 'Name is required!';
             }
 
             // email address
             if (filter_var($this->email, FILTER_VALIDATE_EMAIL) === false) {
-                $this->errors[] = 'Invalid email';
+                $this->errors[] = 'Valid email is required!';
+            }
+            if ($this->emailExists($this->email)) {
+                $this->errors[] = 'Email already exists!';
             }
 
             // Password
             if ($this->password != $this->password_confirmation) {
-                $this->errors[] = 'Password must match confirmation';
+                $this->errors[] = 'Password must match confirmation!';
             }
 
             if (strlen($this->password) < 8) {
-                $this->errors[] = 'Please enter at least 8 characters for the password';
+                $this->errors[] = 'Please enter at least 8 characters for the password!';
             }
 
             if (preg_match('/.*[a-z]+.*/i', $this->password) == 0) {
-                $this->errors[] = 'Password needs at least one letter';
+                $this->errors[] = 'Password needs at least one letter!';
             }
 
             if (preg_match('/.*\d+.*/i', $this->password) == 0) {
-                $this->errors[] = 'Password needs at least one number';
+                $this->errors[] = 'Password needs at least one number!';
             }
 
         }//end of the validate Function
+
+        /**
+         * emailExists Function - ascetains if a user record already exists with the specified email
+         * @param string $email email address to search for
+         * @return boolean  True if a record already exists with the specified email, false otherwise
+         */
+        protected function emailExists($email)
+        {
+            $sql = 'SELECT * FROM users WHERE email = :email';
+
+            $db = static::getDB();
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+
+            $stmt->execute();
+
+            return $stmt->fetch() !== false;
+
+        }//end of the emailExits Function
 
     }//end of the User Class

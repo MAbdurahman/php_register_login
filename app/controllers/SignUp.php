@@ -35,7 +35,9 @@
                 View::renderTemplate('signup/success.html');
 
             } else {
-                var_dump($user->errors);
+                View::renderTemplate('signup/new.html', [
+                    'user' => $user
+                ]);
             }
 
         }// end of the createAction Function
