@@ -32,7 +32,8 @@
 
             if ($user->save()) {
 
-                View::renderTemplate('signup/success.html');
+                header('Location: http://' . $_SERVER['HTTP_HOST'] . '/signup/success', true, 303);
+                exit;
 
             } else {
                 View::renderTemplate('signup/new.html', [
@@ -41,5 +42,15 @@
             }
 
         }// end of the createAction Function
+
+        /**
+         * successAction Function - shows the signup success page
+         * @return void
+         */
+        public function successAction()
+        {
+            View::renderTemplate('signup/success.html');
+
+        }//end of the successAction Function
 
     }//end of the SignUp Class
