@@ -3,7 +3,7 @@
     namespace app\controllers;
 
     use app\models\User;
-    use \core\View;
+    use core\View;
 
     /**
      * SignUp.php is a controller for signup\new.html
@@ -23,17 +23,20 @@
         }//end of the newAction Function
 
         /**
-         * createAction - Signs up a new user
-         *
+         * createAction Function - Signs up a new user
          * @return void
          */
         public function createAction()
         {
             $user = new User($_POST);
 
-            $user->save();
+            if ($user->save()) {
 
-            View::renderTemplate('signup/success.html');
+                View::renderTemplate('signup/success.html');
+
+            } else {
+                var_dump($user->errors);
+            }
 
         }// end of the createAction Function
 
