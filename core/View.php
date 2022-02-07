@@ -19,13 +19,14 @@
         {
             extract($args, EXTR_SKIP);
 
-            $file = "./../app/views/$view"; // relative to core directory
+            $file = dirname(__DIR__) . "/app/views/$view";  // relative to Core
 
             if (is_readable($file)) {
                 require $file;
+
             } else {
-//                echo "$file not found";
                 throw new \Exception("$file not found");
+
             }
         }//end of the render function
 
@@ -42,12 +43,9 @@
             static $twig = null;
 
             if ($twig === null) {
-                $loader = new \Twig_Loader_Filesystem('./../app/views');
+                $loader = new \Twig_Loader_Filesystem(dirname(__DIR__) . '/app/views');
                 $twig = new \Twig_Environment($loader);
-
-                /*$loader = new \Twig\Loader\FilesystemLoader(dirname(__DIR__) .'/app/views');
-                $twig = new \Twig\Environment($loader)*/;
-
+                $twig->addGlobal('session', $_SESSION);
 
             }
 

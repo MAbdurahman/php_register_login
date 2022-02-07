@@ -31,6 +31,8 @@
 
             if ($user) {
 
+                $_SESSION['user_id'] = $user->id;
+
                 $this->redirect('/');
 
             } else {

@@ -26,6 +26,13 @@
     set_error_handler('core\Error::errorHandler');
     set_exception_handler('core\Error::exceptionHandler');
 
+    // sessions
+    session_start();
+
+
+
+
+
 
     /**
      * Autoloader
