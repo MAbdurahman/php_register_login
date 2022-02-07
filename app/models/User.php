@@ -80,10 +80,6 @@
             }
 
             // Password
-            if ($this->password != $this->password_confirmation) {
-                $this->errors[] = 'Password must match confirmation!';
-            }
-
             if (strlen($this->password) < 8) {
                 $this->errors[] = 'Please enter at least 8 characters for the password!';
             }
