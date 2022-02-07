@@ -71,4 +71,17 @@
         {
         }//end of the after function
 
+
+        /**
+         * redirect Function - redirects to a different page
+         * @param string $url  The relative URL
+         * @return void
+         */
+        public function redirect($url)
+        {
+            header('Location: http://' . $_SERVER['HTTP_HOST'] . $url, true, 303);
+            exit;
+
+        }//end of the redirect Function
+
     }//end of the Controller class
