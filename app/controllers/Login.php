@@ -2,6 +2,7 @@
 
     namespace app\controllers;
 
+    use app\models\User;
     use core\View;
 
     /**
@@ -19,4 +20,16 @@
         {
             View::renderTemplate('login/new.html');
         }//end of the newAction Function
+
+        /**
+         * createAction Function - logs in a user
+         * @return void
+         */
+        public function createAction()
+        {
+            $user = User::findByEmail($_POST['email']);
+
+            var_dump($user);;
+
+        }//end of the createAction Function
     }//end of the Login Class
