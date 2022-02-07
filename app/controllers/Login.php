@@ -27,9 +27,17 @@
          */
         public function createAction()
         {
-            $user = User::findByEmail($_POST['email']);
+            $user = User::authenticate($_POST['email'], $_POST['password']);
 
-            var_dump($user);;
+            if ($user) {
+
+                header('Location: http://' . $_SERVER['HTTP_HOST'] . '/', true, 303);
+                exit;
+
+            } else {
+
+                View::renderTemplate('login/new.html');
+            }
 
         }//end of the createAction Function
     }//end of the Login Class
