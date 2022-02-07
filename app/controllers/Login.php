@@ -36,7 +36,9 @@
 
             } else {
 
-                View::renderTemplate('login/new.html');
+                View::renderTemplate('login/new.html', [
+                    'email' => $_POST['email']
+                ]);
             }
 
         }//end of the createAction Function
