@@ -2,7 +2,6 @@
 
     namespace app\controllers;
 
-    use app\Auth;
     use core\View;
 
     /**
@@ -11,6 +10,16 @@
      */
     class Items extends \core\Controller
     {
+        /**
+         *before Function - requires the user to be authenticated before allowing access to
+         * all methods in the controller
+         * @return void
+         */
+        protected function before()
+        {
+            $this->requireLogin();
+
+        }//end of the before Function
 
         /**
          * indexAction Function - displays an Items index view
@@ -18,9 +27,28 @@
          */
         public function indexAction()
         {
-            $this->requireLogin();
-
             View::renderTemplate('items/index.html');
 
         }//end of the indexAction Function
+
+        /**
+         * newAction Function - add a new item
+         * @return void
+         */
+        public function newAction()
+        {
+            echo "new action";
+
+        }//end of the newAction Function
+
+        /**
+          showAction - displays an item
+         * @return void
+         */
+        public function showAction()
+        {
+            echo "show action";
+
+        }//end of the showAction Function
+
     }//end of the Items Class
