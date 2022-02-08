@@ -52,17 +52,6 @@
         }//end of the logout Function
 
         /**
-         * isLoggedIn Function - returns an indicator of whether a user is logged-in
-         * or not
-         * @return boolean
-         */
-        public static function isLoggedIn()
-        {
-            return isset($_SESSION['user_id']);
-
-        }//end of the isLoggedIn Function
-
-        /**
          * rememberRequestedPage Function - remembers the originally requested page in the
          * session
          * @return void

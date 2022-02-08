@@ -45,7 +45,6 @@
             if ($twig === null) {
                 $loader = new \Twig_Loader_Filesystem(dirname(__DIR__) . '/app/views');
                 $twig = new \Twig_Environment($loader);
-                $twig->addGlobal('is_logged_in', \app\Auth::isLoggedIn());
                 $twig->addGlobal('current_user', \app\Auth::getUser());
 
             }
