@@ -1,6 +1,8 @@
 <?php
 
     namespace core;
+
+    use app\Auth;
     /**
      * Base Controller
      * PHP version 8.0.13
@@ -83,5 +85,21 @@
             exit;
 
         }//end of the redirect Function
+
+        /**
+         * requireLogin Function - requires the user to be logged-in before allowing access
+         * to the requested page.  In addition, it remembers the requested page for later,
+         * then redirects to the login page.
+         * @return void
+         */
+        public function requireLogin()
+        {
+            if (! Auth::isLoggedIn()) {
+
+                Auth::rememberRequestedPage();
+
+                $this->redirect('/login');
+            }
+        }//end of the requireLogin Function
 
     }//end of the Controller class
