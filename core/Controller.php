@@ -3,6 +3,7 @@
     namespace core;
 
     use app\Auth;
+    use app\Flash;
     /**
      * Base Controller
      * PHP version 8.0.13
@@ -96,6 +97,7 @@
         {
             if (! Auth::getUser()) {
 
+                Flash::addMessage('Please login to access that page');
                 Auth::rememberRequestedPage();
 
                 $this->redirect('/login');
