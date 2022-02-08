@@ -8,18 +8,9 @@
      * Items Class
      * PHP version 8.0.13
      */
-    class Items extends \core\Controller
+    class Items extends Authenticated
     {
-        /**
-         *before Function - requires the user to be authenticated before allowing access to
-         * all methods in the controller
-         * @return void
-         */
-        protected function before()
-        {
-            $this->requireLogin();
 
-        }//end of the before Function
 
         /**
          * indexAction Function - displays an Items index view
