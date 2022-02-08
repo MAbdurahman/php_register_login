@@ -2,6 +2,7 @@
 
     namespace app\controllers;
 
+    use app\Auth;
     use core\View;
 
     /**
@@ -45,10 +46,7 @@
                 'colours' => ['red', 'green', 'blue']
             ]);*/
 
-            View::renderTemplate('home/index.html', [
-                'name'    => 'Mahdi',
-                'colors' => ['red', 'green', 'blue']
-            ]);
+            View::renderTemplate('home/index.html');
 
         }//end of the indexAction function
 
