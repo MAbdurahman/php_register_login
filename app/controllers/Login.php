@@ -33,7 +33,8 @@
             if ($user) {
 
                 Auth::login($user);
-                $this->redirect('/');
+                $this->redirect(Auth::getReturnToPage());
+
 
             } else {
 

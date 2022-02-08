@@ -61,4 +61,26 @@
 
         }//end of the isLoggedIn Function
 
+        /**
+         * rememberRequestedPage Function - remembers the originally requested page in the
+         * session
+         * @return void
+         */
+        public static function rememberRequestedPage()
+        {
+            $_SESSION['return_to'] = $_SERVER['REQUEST_URI'];
+
+        }//end of the rememberRequestedPage Function
+
+        /**
+         * getReturnToPage Function - retrieves the originally requested page to return to
+         * after logging-in, or default to the homepage
+         * @return void
+         */
+        public static function getReturnToPage()
+        {
+            return $_SESSION['return_to'] ?? '/';
+
+        }//end of the getReturnToPage Function
+
     }//end of the Auth Class
