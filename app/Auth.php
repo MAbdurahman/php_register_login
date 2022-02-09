@@ -3,6 +3,8 @@
     namespace app;
 
     use app\models\User;
+    use app\models\RememberedLogin;
+
     /**
      * Auth Class -
      * PHP version 8.0.13
@@ -92,9 +94,39 @@
         public static function getUser()
         {
             if (isset($_SESSION['user_id'])) {
+
                 return User::findByID($_SESSION['user_id']);
+
+            } else {
+
+                return static::loginFromRememberCookie();
+
             }
 
         }//end of the getUser Function
+
+        /**
+         * loginFromRememberCookie Function - logins the user from a remembered login cookie
+         * @return mixed The user model if login cookie found; null otherwise
+         */
+        protected static function loginFromRememberCookie()
+        {
+            $cookie = $_COOKIE['remember_me'] ?? false;
+
+            if ($cookie) {
+
+                $remembered_login = RememberedLogin::findByToken($cookie);
+
+                if ($remembered_login) {
+
+                    $user = $remembered_login->getUser();
+
+                    static::login($user, false);
+
+                    return $user;
+                }
+            }
+
+        }//end of the loginFromRememberCookie Function
 
     }//end of the Auth Class
