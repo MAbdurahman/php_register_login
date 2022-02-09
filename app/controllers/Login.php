@@ -34,9 +34,8 @@
 
             if ($user) {
 
-                Auth::login($user);
-                // Remember the login here
-                // ...
+                Auth::login($user, $remember_me);
+
                 Flash::addMessage('Successful login');
                 $this->redirect(Auth::getReturnToPage());
 
