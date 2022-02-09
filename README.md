@@ -12,7 +12,7 @@ the course, then you'll already know how to use it. If not, please follow the in
 2. Run **composer update** to install the project dependencies.
 3. Configure your web server to have the **public** folder as the web root.
 4. Create an .env file at the root of this project and enter your database configuration data: This file should have - 
-   DB_HOST=, DB_NAME=, DB_USERNAME=, DB_PASSWORD=.
+   DB_HOST=, DB_NAME=, DB_USERNAME=, DB_PASSWORD=, SECRET_KEY=.
 5. Open [app/Config.php](app/Config.php) and set variable SHOW_ERRORS to true for development or to false for
    production.
 6. Create routes, add controllers, views and models.
