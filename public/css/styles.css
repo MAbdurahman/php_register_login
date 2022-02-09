@@ -1,0 +1,6 @@
+.alert {
+    width: 300px;
+    text-align: center;
+    border: 1px solid #ccc;
+    padding: 6px;
+}
