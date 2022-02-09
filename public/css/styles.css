@@ -1,6 +1,16 @@
 .alert {
     width: 300px;
     text-align: center;
+    color: #ffffff;
     border: 1px solid #ccc;
     padding: 6px;
+}
+.alert-info {
+    background-color: #5ab8e7;
+}
+.alert-success {
+    background-color: #39791f;
+}
+.alert-warning {
+    background-color: #dabd24;
 }

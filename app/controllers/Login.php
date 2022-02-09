@@ -40,7 +40,7 @@
 
             } else {
 
-                Flash::addMessage('Unsuccessful login, try again!');
+                Flash::addMessage('Unsuccessful login, try again!', Flash::WARNING);
                 View::renderTemplate('login/new.html', [
                     'email' => $_POST['email']
                 ]);
