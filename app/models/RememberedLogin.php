@@ -46,4 +46,32 @@
 
         }//end of the getUser Function
 
+        /**
+         * hasExpired Function - finds out if the remember token has expired or not, based
+         * on the current system time
+         * @return boolean True if the token has expired, false otherwise
+         */
+        public function hasExpired()
+        {
+            return strtotime($this->expires_at) < time();
+
+        }//end of the hasExpired Function
+
+        /**
+         * delete Function - deletes this model
+         * @return void
+         */
+        public function delete()
+        {
+            $sql = 'DELETE FROM remembered_logins
+                WHERE token_hash = :token_hash';
+
+            $db = static::getDB();
+            $stmt = $db->prepare($sql);
+            $stmt->bindValue(':token_hash', $this->token_hash, PDO::PARAM_STR);
+
+            $stmt->execute();
+
+        }//end of the delete Function
+
     }//end of the RememberedLogin Class
