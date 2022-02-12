@@ -18,13 +18,6 @@
          */
         public function indexAction()
         {
-            /*            View::render('Home/index.php', [
-                            'name'    => 'Mahdi',
-                            'colours' => ['red', 'green', 'blue']
-                        ]);*/
-            \app\Mail::send('yrud1@hotmail.com', 'First Test',
-                'This is just a test!', '<h2>This is just a test!</h2>');
-
             View::renderTemplate('home/index.html');
 
         }//end before function
