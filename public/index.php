@@ -6,10 +6,12 @@
 
 <?php
 
+
     /**
      * Front controller
      * PHP version 8.0.13
      */
+
 
     // composer autoload
     require dirname(__DIR__) . '/vendor/autoload.php';
@@ -21,10 +23,14 @@
     $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
     $dotenv->load();
 
+
     // error and exception handling
     error_reporting(E_ALL);
     set_error_handler('core\Error::errorHandler');
     set_exception_handler('core\Error::exceptionHandler');
+
+
+
 
     // sessions
     session_start();
