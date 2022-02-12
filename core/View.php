@@ -40,6 +40,18 @@
          */
         public static function renderTemplate($template, $args = [])
         {
+            echo static::getTemplate($template, $args);
+
+        }//end of renderTemplate function
+
+        /**
+         * getTemplate Function - renders a view template using Twig
+         * @param string $template  The template file
+         * @param array $args  Associative array of data to display in the view (optional)
+         * @return string $twig -
+         */
+        public static function getTemplate($template, $args = [])
+        {
             static $twig = null;
 
             if ($twig === null) {
@@ -50,7 +62,8 @@
 
             }
 
-            echo $twig->render($template, $args);
-        }//end of renderTemplate function
+            return $twig->render($template, $args);
+
+        }//end of getTemplate function
 
     }//end of the class View
