@@ -2,6 +2,7 @@
 
     namespace app\controllers;
 
+    use app\models\User;
     use core\View;
 
     /**
@@ -20,5 +21,17 @@
             View::renderTemplate('password/forgot.html');
 
         }//end of the forgotAction Function
+
+        /**
+         * requestResetAction Function - sends the password reset link to the specific email
+         * @return void
+         */
+        public function requestResetAction()
+        {
+            User::sendPasswordReset($_POST['email']);
+
+            View::renderTemplate('password/reset_requested.html');
+
+        }//end of the requestResetAction Function
 
     }//end of the Password Class

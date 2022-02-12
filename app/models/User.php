@@ -198,4 +198,20 @@
 
         }//end of the rememberLogin Function
 
+        /**
+         * sendPasswordReset Function - sends password reset instructions to the user specified
+         * @param string $email - the specified email
+         * @return void
+         */
+        public static function sendPasswordReset($email)
+        {
+            $user = static::findByEmail($email);
+
+            if ($user) {
+
+                // Start password reset process here
+
+            }
+        }//end of the sendPasswordReset Function
+
     }//end of the User Class
