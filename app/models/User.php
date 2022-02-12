@@ -5,6 +5,7 @@
     use Dotenv\Dotenv;
     use PDO;
     use app\Token;
+    use app\Mail;
 
     /**
      * User Class - a user Model
@@ -211,8 +212,7 @@
 
                 if ($user->startPasswordReset()) {
 
-                    // Send email here...
-
+                    $user->sendPasswordResetEmail();
                 }
 
             }
@@ -227,6 +227,7 @@
         {
             $token = new Token();
             $hashed_token = $token->getHash();
+            $this->password_reset_token = $token->getValue();
 
             $expiry_timestamp = time() + 60 * 60 * 2;  // 2 hours from now
 
@@ -245,5 +246,21 @@
             return $stmt->execute();
 
         }//end of the startPasswordReset Function
+
+        /**
+         * sendPasswordResetEmail Function - sends password reset instructions in an
+         * email to the User
+         * @return void
+         */
+        protected function sendPasswordResetEmail()
+        {
+            $url = 'http://' . $_SERVER['HTTP_HOST'] . '/password/reset/' . $this->password_reset_token;
+
+            $text = "Please click on the following URL to reset your password: $url";
+            $html = "Please click <a href=\"$url\">here</a> to reset your password.";
+
+            Mail::send($this->email, 'Password reset', $text, $html);
+
+        }//end of the sendPasswordResetEmail Function
 
     }//end of the User Class
