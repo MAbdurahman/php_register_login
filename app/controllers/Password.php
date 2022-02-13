@@ -64,7 +64,7 @@
 
             if ($user->resetPassword($_POST['password'])) {
 
-                echo "password valid";
+                View::renderTemplate('password/reset_success.html');
 
             } else {
 
