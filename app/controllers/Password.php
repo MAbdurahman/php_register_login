@@ -46,7 +46,9 @@
 
             if ($user) {
 
-                View::renderTemplate('password/reset.html');
+                View::renderTemplate('Password/reset.html', [
+                    'token' => $token
+                ]);
 
             } else {
 
@@ -55,5 +57,27 @@
             }
 
         }//end of the resetAction Function
+
+        /**
+         * resetPasswordAction Function - resets the User's password
+         * @return void
+         */
+        public function resetPasswordAction()
+        {
+            $token = $_POST['token'];
+
+            $user = User::findByPasswordReset($token);
+
+            if ($user) {
+
+                echo "reset user's password here";
+
+            } else {
+
+                echo "password reset token invalid";
+
+            }
+
+        }// end of the resetPasswordAction Function
 
     }//end of the Password Class
