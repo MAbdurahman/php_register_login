@@ -34,4 +34,16 @@
 
         }//end of the requestResetAction Function
 
+        /**
+         * resetAction Function - shows the reset password form
+         * @return void
+         */
+        public function resetAction()
+        {
+            $token = $this->route_params['token'];
+
+            echo $token;
+
+        }//end of the resetAction Function
+
     }//end of the Password Class
