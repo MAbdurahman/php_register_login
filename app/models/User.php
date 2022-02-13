@@ -43,10 +43,14 @@
             $this->validate();
 
             if (empty($this->errors)) {
+
                 $password_hash = password_hash($this->password, PASSWORD_DEFAULT);
 
-                $sql = 'INSERT INTO users (name, email, password_hash)
-            VALUES (:name, :email, :password_hash)';
+                $token = new Token();
+                $hashed_token = $token->getHash();
+
+                $sql = 'INSERT INTO users (name, email, password_hash, activation_hash)
+                    VALUES (:name, :email, :password_hash, :activation_hash)';
 
                 $db = static::getDB();
                 $stmt = $db->prepare($sql);
@@ -54,10 +58,11 @@
                 $stmt->bindValue(':name', $this->name, PDO::PARAM_STR);
                 $stmt->bindValue(':email', $this->email, PDO::PARAM_STR);
                 $stmt->bindValue(':password_hash', $password_hash, PDO::PARAM_STR);
+                $stmt->bindValue(':activation_hash', $hashed_token, PDO::PARAM_STR);
 
                 return $stmt->execute();
-
             }
+
             return false;
 
         }//end of the save Function
