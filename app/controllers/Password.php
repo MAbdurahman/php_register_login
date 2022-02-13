@@ -44,17 +44,11 @@
 
             $user = User::findByPasswordReset($token);
 
-            if ($user) {
+            $user = $this->getUserOrExit($token);
 
-                View::renderTemplate('Password/reset.html', [
-                    'token' => $token
-                ]);
-
-            } else {
-
-                echo "password reset token invalid";
-
-            }
+            View::renderTemplate('Password/reset.html', [
+                'token' => $token
+            ]);
 
         }//end of the resetAction Function
 
@@ -66,18 +60,32 @@
         {
             $token = $_POST['token'];
 
+            $user = $this->getUserOrExit($token);
+
+            echo "reset user's password here";
+
+        }// end of the resetPasswordAction Function
+
+        /**
+         * getUserOrExit Function - finds the User model associated with the password reset
+         * token, or end the request with a message
+         * @param string $token Password reset token sent to user
+         * @return mixed User object if found and the token hasn't expired, null otherwise
+         */
+        protected function getUserOrExit($token)
+        {
             $user = User::findByPasswordReset($token);
 
             if ($user) {
 
-                echo "reset user's password here";
+                return $user;
 
             } else {
 
-                echo "password reset token invalid";
+                View::renderTemplate('password/token_expired.html');
+                exit;
 
             }
-
-        }// end of the resetPasswordAction Function
+        }//end of the getUserOrExit Function
 
     }//end of the Password Class
