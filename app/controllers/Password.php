@@ -42,7 +42,9 @@
         {
             $token = $this->route_params['token'];
 
-            echo $token;
+            $user = User::findByPasswordReset($token);
+
+            var_dump($user);
 
         }//end of the resetAction Function
 

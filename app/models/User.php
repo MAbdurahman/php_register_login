@@ -264,4 +264,40 @@
 
         }//end of the sendPasswordResetEmail Function
 
+        /**
+         * findByPasswordReset Function - finds a User model by password reset token
+         * and expiry_timestamp
+         * @param string $token Password reset token sent to user
+         * @return mixed User object if found and the token hasn't expired, null otherwise
+         */
+        public static function findByPasswordReset($token)
+        {
+            $token = new Token($token);
+            $hashed_token = $token->getHash();
+
+            $sql = 'SELECT * FROM users
+                WHERE password_reset_hash = :token_hash';
+
+            $db = static::getDB();
+            $stmt = $db->prepare($sql);
+
+            $stmt->bindValue(':token_hash', $hashed_token, PDO::PARAM_STR);
+
+            $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+            $stmt->execute();
+
+            $user = $stmt->fetch();
+
+            if ($user) {
+
+                // Check password reset token hasn't expired
+                if (strtotime($user->password_reset_expires_at) > time()) {
+
+                    return $user;
+
+                }
+            }
+        }//end of the findByPasswordReset Function
+
     }//end of the User Class
