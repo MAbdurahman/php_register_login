@@ -78,7 +78,7 @@
             if (filter_var($this->email, FILTER_VALIDATE_EMAIL) === false) {
                 $this->errors[] = 'Valid email is required!';
             }
-            if (static::emailExists($this->email)) {
+            if (static::emailExists($this->email, $this->id ?? null)) {
                 $this->errors[] = 'Email already exists!';
             }
 
@@ -100,11 +100,20 @@
         /**
          * emailExists Function - ascetains if a user record already exists with the specified email
          * @param string $email email address to search for
+         * @param string $ignore_id  - returns false anyway if the record found has this ID
          * @return boolean  True if a record already exists with the specified email, false otherwise
          */
-        public static function emailExists($email)
+        public static function emailExists($email, $ignore_id = null)
         {
-            return static::findByEmail($email) !== false;
+            $user = static::findByEmail($email);
+
+            if ($user) {
+                if ($user->id != $ignore_id) {
+                    return true;
+                }
+            }
+
+            return false;
 
         }//end of the emailExits Function
 
@@ -299,5 +308,21 @@
                 }
             }
         }//end of the findByPasswordReset Function
+
+        /**
+         * reesetPassword Function - resets the User's password
+         * @param string $password - the User's new password
+         * @return boolean  - returns true if the password was updated successfully;
+         * otherwise, false
+         */
+        public function resetPassword($password)
+        {
+            $this->password = $password;
+
+            $this->validate();
+
+            return empty($this->errors);
+
+        }//end of the resetPassword Function
 
     }//end of the User Class

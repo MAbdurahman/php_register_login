@@ -62,7 +62,18 @@
 
             $user = $this->getUserOrExit($token);
 
-            echo "reset user's password here";
+            if ($user->resetPassword($_POST['password'])) {
+
+                echo "password valid";
+
+            } else {
+
+                View::renderTemplate('password/reset.html', [
+                    'token' => $token,
+                    'user' => $user
+                ]);
+
+            }
 
         }// end of the resetPasswordAction Function
 
