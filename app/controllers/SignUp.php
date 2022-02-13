@@ -53,4 +53,26 @@
 
         }//end of the successAction Function
 
+        /**
+         * activateAction Function - activates a new account
+         * @return void
+         */
+        public function activateAction()
+        {
+            User::activate($this->route_params['token']);
+
+            $this->redirect('/signup/activated');
+
+        }//end dof the activateAction Function
+
+        /**
+         * activatedAction Function - shows the activation success page
+         * @return void
+         */
+        public function activatedAction()
+        {
+            View::renderTemplate('signup/activated.html');
+
+        }//end of the activatedAction
+
     }//end of the SignUp Class

@@ -365,4 +365,29 @@
 
         }//end of the sendActivationEmail Function
 
+        /**
+         * activate Function - activates the User's account with the specified activation
+         * token
+         * @param string $value - activation token from the URL
+         * @return void
+         */
+        public static function activate($value)
+        {
+            $token = new Token($value);
+            $hashed_token = $token->getHash();
+
+            $sql = 'UPDATE users
+                SET is_active = 1,
+                    activation_hash = null
+                WHERE activation_hash = :hashed_token';
+
+            $db = static::getDB();
+            $stmt = $db->prepare($sql);
+
+            $stmt->bindValue(':hashed_token', $hashed_token, PDO::PARAM_STR);
+
+            $stmt->execute();
+
+        }//end of the activate Function
+
     }//end of the User Class

@@ -60,6 +60,7 @@
     $router->add('login', ['controller' => 'Login', 'action' => 'new']);
     $router->add('logout', ['controller' => 'Login', 'action' => 'destroy']);
     $router->add('password/reset/{token:[\da-f]+}', ['controller' => 'Password', 'action' => 'reset']);
+    $router->add('signup/activate/{token:[\da-f]+}', ['controller' => 'Signup', 'action' => 'activate']);
     $router->add('{controller}/{id:\d+}/{action}');
     $router->add('admin/{controller}/{action}', ['namespace' => 'Admin']);
 
