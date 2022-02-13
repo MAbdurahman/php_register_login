@@ -32,6 +32,7 @@
 
             if ($user->save()) {
 
+                $user->sendActivationEmail();
                 $this->redirect('/signup/success');
 
             } else {

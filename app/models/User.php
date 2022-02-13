@@ -48,6 +48,7 @@
 
                 $token = new Token();
                 $hashed_token = $token->getHash();
+                $this->activation_token = $token->getValue();
 
                 $sql = 'INSERT INTO users (name, email, password_hash, activation_hash)
                     VALUES (:name, :email, :password_hash, :activation_hash)';
@@ -348,5 +349,20 @@
             return false;
 
         }//end of the resetPassword Function
+
+        /**
+         * sendActivationEmail Function - sends an email to user containing the activation link
+         * @return void
+         */
+        public function sendActivationEmail()
+        {
+            $url = 'http://' . $_SERVER['HTTP_HOST'] . '/signup/activate/' . $this->activation_token;
+
+            $text = View::getTemplate('Signup/activation_email.txt', ['url' => $url]);
+            $html = View::getTemplate('Signup/activation_email.html', ['url' => $url]);
+
+            Mail::send($this->email, 'Account activation', $text, $html);
+
+        }//end of the sendActivationEmail Function
 
     }//end of the User Class
