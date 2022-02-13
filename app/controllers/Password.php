@@ -44,7 +44,15 @@
 
             $user = User::findByPasswordReset($token);
 
-            var_dump($user);
+            if ($user) {
+
+                View::renderTemplate('password/reset.html');
+
+            } else {
+
+                echo "password reset token invalid";
+
+            }
 
         }//end of the resetAction Function
 
