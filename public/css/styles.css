@@ -1,3 +1,13 @@
+div.container.main-container {
+    margin-top: 2em !important;
+}
+
+ul {
+    list-style-type: none !important;
+}
+a {
+    text-decoration: none !important;
+}
 .alert {
     width: 300px;
     text-align: center;
