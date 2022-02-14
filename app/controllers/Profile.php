@@ -13,13 +13,25 @@
     class Profile extends Authenticated
     {
         /**
+         * before Function - before filter called before each action method
+         * @return void
+         */
+        protected function before()
+        {
+            parent::before();
+
+            $this->user = Auth::getUser();
+
+        }//end of the before Function
+
+        /**
          * showAction Function - show the User's profile page
          * @return void
          */
         public function showAction()
         {
-            View::renderTemplate('Profile/show.html', [
-                'user' => Auth::getUser()
+            View::renderTemplate('profile/show.html', [
+                'user' => $this->user
             ]);
 
         }//end of the showAction Function
@@ -31,7 +43,7 @@
         public function editAction()
         {
             View::renderTemplate('profile/edit.html', [
-                'user' => Auth::getUser()
+                'user' => $this->user
             ]);
 
         }//end of the editAction Function
@@ -42,9 +54,8 @@
          */
         public function updateAction()
         {
-            $user = Auth::getUser();
 
-            if ($user->updateProfile($_POST)) {
+            if ($this->user->updateProfile($_POST)) {
 
                 Flash::addMessage('Changes saved');
 
@@ -53,7 +64,7 @@
             } else {
 
                 View::renderTemplate('profile/edit.html', [
-                    'user' => $user
+                    'user' => $this->user
                 ]);
 
             }
