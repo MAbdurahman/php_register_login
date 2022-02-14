@@ -23,4 +23,16 @@
 
         }//end of the showAction Function
 
+        /**
+         * editAction - shows the form for editing the User's profile
+         * @return void
+         */
+        public function editAction()
+        {
+            View::renderTemplate('profile/edit.html', [
+                'user' => Auth::getUser()
+            ]);
+
+        }//end of the editAction Function
+
     }//end of the Profile Class
