@@ -63,7 +63,7 @@
 
             $this->redirect('/signup/activated');
 
-        }//end dof the activateAction Function
+        }//end of the activateAction Function
 
         /**
          * activatedAction Function - shows the activation success page
