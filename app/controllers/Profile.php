@@ -2,6 +2,7 @@
 
     namespace app\controllers;
 
+    use app\Flash;
     use \core\View;
     use \app\Auth;
 
@@ -34,5 +35,28 @@
             ]);
 
         }//end of the editAction Function
+
+        /**
+         * updateAction Function - updates the User's profile
+         * @return void
+         */
+        public function updateAction()
+        {
+            $user = Auth::getUser();
+
+            if ($user->updateProfile($_POST)) {
+
+                Flash::addMessage('Changes saved');
+
+                $this->redirect('/profile/show');
+
+            } else {
+
+                View::renderTemplate('profile/edit.html', [
+                    'user' => $user
+                ]);
+
+            }
+        }//end of the updateAction Function
 
     }//end of the Profile Class
